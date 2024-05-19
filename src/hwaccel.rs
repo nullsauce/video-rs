@@ -80,6 +80,7 @@ impl HardwareAccelerationDeviceType {
 
 impl HardwareAccelerationDeviceType {
     pub fn from(value: ffmpeg::ffi::AVHWDeviceType) -> Option<HardwareAccelerationDeviceType> {
+
         match value {
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_VDPAU => Some(Self::Vdpau),
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_CUDA => Some(Self::Cuda),
@@ -91,7 +92,7 @@ impl HardwareAccelerationDeviceType {
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_DRM => Some(Self::Drm),
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_OPENCL => Some(Self::OpenCl),
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_MEDIACODEC => Some(Self::MeiaCodec),
-            ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_VULKAN => Some(Self::Vulkan),
+            //ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_VULKAN => Some(Self::Vulkan),
             ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_NONE => None,
             // FIXME: Find a way to handle the new variants in ffmpeg 7 without breaking backwards
             // compatibility...
@@ -135,7 +136,8 @@ impl From<HardwareAccelerationDeviceType> for ffmpeg::ffi::AVHWDeviceType {
                 ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_MEDIACODEC
             }
             HardwareAccelerationDeviceType::Vulkan => {
-                ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_VULKAN
+            //     ffmpeg::ffi::AVHWDeviceType::AV_HWDEVICE_TYPE_VULKAN
+                unimplemented!("Vulkan is not supported")
             }
             HardwareAccelerationDeviceType::D3D12Va => {
                 unimplemented!()
